@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>imgUpload</title>
+</head>
+<body>
+<input type="file"/>
+<img src="" alt="">
+<script>
+    //再页面中上传一个图片，图片显示在页面中
+    let fl = document.querySelector('input');
+    fl.onchange = function () {
+        //创建读取文件对象
+        let fReader = new FileReader();
+        //读取图片
+        fReader.readAsDataURL(fl.files[0]);
+        //图片读取的加载过程
+        fReader.onload = function () {
+            //显示图片
+            document.querySelector('img').src = this.result;
+        }
+    }
+</script>
+</body>
+</html>

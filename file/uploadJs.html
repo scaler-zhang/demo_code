@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload Js</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+<input type="file">
+<div>上传后点击</div>
+<script>
+    //获取上传文件
+    let fl = document.querySelector('input');
+    //上传的事件
+    fl.onchange = function () {
+        //获取文件
+        let file = fl.files[0];
+        //创建读取文件对象
+        let fReader = new FileReader();
+        fReader.readAsText(file);//读取文件
+        //文件加载事件
+        fReader.onload = function () {
+            //读取文件结果
+            let txtJs = this.result;
+            let sc = document.createElement('script');
+            sc.innerHTML = txtJs;
+            let head = document.querySelector('head');
+            head.appendChild(sc);
+        }
+    }
+
+</script>
+</body>
+</html>

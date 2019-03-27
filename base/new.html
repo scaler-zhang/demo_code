@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Parent(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Parent.prototype.ability = 100;
+    Parent.prototype.sayYourName = function () {
+        console.log("I am " + this.name);
+    }
+    //new 出来的p 有哪些特点
+    //1.访问到构造函数里面的属性
+    //2.访问到原型上的属性
+    // let p = new Parent('binbin', 33);
+    let p = Wnew(Parent, 'binbin', 33);
+    console.log(p.name);
+    console.log(p.age);
+    console.log(p.ability);
+    p.sayYourName();
+
+    // 仿new
+    function Wnew() {
+        let Constructor = [].shift.call(arguments);
+        let obj = Object.create(Constructor.prototype);
+        let result = Constructor.apply(obj, arguments);
+        return typeof result === 'object' ? result || obj : obj;
+    }
+
+    //1.创建空对象
+    //2. 获取arguments 第一参数， arguments 会少一个参数
+    //3. 执行构造函数
+    //4. 使用apply 改变this指向， 指向新对象，这样之后，obj就可以访问到构造函数中是属性、
+    //5. 返回obj 对象
+</script>
+</body>
+</html>
