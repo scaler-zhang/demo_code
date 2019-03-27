@@ -1,5 +1,5 @@
 /**
- *Created by bin on 2018/12/30
+ * Created by bin on 2018/12/30
  */
 document.querySelector('div').onclick = function () {
     this.style.width = '300px';
